@@ -34,26 +34,24 @@
                     };
                 };
             };
-
-            console.log('Фнкция вызвана '+ counter +' раз');
         }
         
 
-        console.profile('Scheme of loading 10 10 10');
+        console.time('Scheme of loading 10 10 10');
             test(10,10,10,100);
-        console.profileEnd();
+        console.timeEnd('Scheme of loading 10 10 10');
 
-        console.profile('Scheme of loading 100 10 10');
+        console.time('Scheme of loading 100 10 10');
             test(100,10,10,100);
-        console.profileEnd();
+        console.timeEnd('Scheme of loading 100 10 10');
 
-        console.profile('Scheme of loading 10 100 10');
+        console.time('Scheme of loading 10 100 10');
             test(10,100,10,100);
-        console.profileEnd();
+        console.timeEnd('Scheme of loading 10 100 10');
 
-        console.profile('Scheme of loading 10 10 100');
+        console.time('Scheme of loading 10 10 100');
             test(10,10,100,100);
-        console.profileEnd();
+        console.timeEnd('Scheme of loading 10 10 100');
     </script>
 </head>
 
