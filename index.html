@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	<title>События</title>
+    <script type="text/javascript" src="events.js"></script>
+    <script type="text/javascript">
+        
+        // Создаем "x" объектов (контекстов)
+        // Подписываем на "y" событий
+        // Каждому событию назначаем "z" обработчиков
+        // Дергаем все события каждого обработчика "n" раз
+        function test(x,y,z,n){
+            var objects = [],
+                counter=0;
+
+            for (var i = 0; i < x; i++) {
+                objects.push(new Observed ());               
+                for (var j = 0; j < y; j++) {
+                    var fns = [];
+
+                    for (var k = 0; k < z; k++) {
+                        fns.push(function () { counter++ })    
+                    };
+
+                    objects[i].on('event-'+ i +'-'+ j, fns);
+                };  
+            };  
+
+            // objects[0].trigger('event-0-0');
+
+            for (var i = x - 1; i >= 0; i--) {
+                for (var j = y - 1; i >= 0; i--) {
+                    for (var k = n - 1; k >= 0; k--) {
+                        objects[i].trigger('event-'+ i +'-'+ j);                        
+                    };
+                };
+            };
+
+            console.log('Фнкция вызвана '+ counter +' раз');
+        }
+        
+
+        console.profile('Scheme of loading 10 10 10');
+            test(10,10,10,100);
+        console.profileEnd();
+
+        console.profile('Scheme of loading 100 10 10');
+            test(100,10,10,100);
+        console.profileEnd();
+
+        console.profile('Scheme of loading 10 100 10');
+            test(10,100,10,100);
+        console.profileEnd();
+
+        console.profile('Scheme of loading 10 10 100');
+            test(10,10,100,100);
+        console.profileEnd();
+    </script>
+</head>
+
+<body>
+</body>
+</html>
